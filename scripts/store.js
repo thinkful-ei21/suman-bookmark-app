@@ -30,16 +30,20 @@ const store = (function(){
   };
 
   const toggleEdit = function(index){
-    this.items[index].edit = !this.items[index].edit;
-    //this.items[index.expand] = false;    
+    this.items[index].edit = !this.items[index].edit;    
   };
 
   const deleteItem = function(index){
     this.items.splice(index,1);
   };
 
-  const updateItem = function(){
-
+  const updateItem = function(id,newItem){
+    this.items = this.items.forEach(item => {
+      if(item.id === id){
+        item.desc = newItem.desc;
+        item.rating = newItem.rating;
+      }
+    });
   };
 
   const minimumRatingFilter = function(value){       

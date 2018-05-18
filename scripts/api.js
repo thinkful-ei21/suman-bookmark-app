@@ -20,10 +20,11 @@ const api = (function(){
   };
 
   const patchItem = function(id,updatingBookmark,callback){
+    const updatedBookmark = JSON.stringify(updatingBookmark);        
     $.ajax({
       url: `${BASE_URL}/bookmarks/${id}`,
-      method: 'POST',
-      data: JSON.stringify(updatingBookmark),
+      method: 'PATCH',
+      data: updatedBookmark,
       contentType: 'application/json',
       success: callback,
     });

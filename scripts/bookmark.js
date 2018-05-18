@@ -32,18 +32,19 @@ const bookmarks = (function(){
     return starString;
   }
 
-  function generateBookmark(item,index){
-    const rating = item.rating;    
-    console.log(item.edit);
-    return item.edit? `<form class="form-adding-bookmark">  
+  function generateBookmark(item){
+    const rating = item.rating;        
+    return item.edit? `<form class="create-bookmark-form">  
     <fieldset>
       <legend>Edit a bookmark:</legend><br>
       <legend>${item.title}</legend>
       <legend>${item.url}</legend>   
-      <textarea id="js-description" rows="3" cols="50">${item.desc}</textarea> 
-      ${generateStars(rating)}       
+      <textarea id="js-description" rows="3" cols="50" data-item-id="${item.id}">${item.desc}</textarea> 
+      <legend> Current Rating :</legend> ${generateStars(rating)} <br> 
+      <label for="rating">Select A Rating (Default would be 1):</label>      
       ${ratingHTML()}          
-      <input type="submit" value="SUBMIT"/>
+      <input type="submit" value="SAVE" class="js-update-save-btn"/>
+      <input type="button" value="CANCEL" class="js-update-cancel-btn"/>
     </fieldset>                     
   </form>`:`<form class="create-bookmark-form">
       <div class="article" data-item-id="${item.id}">
@@ -104,9 +105,8 @@ const bookmarks = (function(){
     return store.items.map((item,index) => {      
       if(item.expand){
         return generateExpandedBookmark(item,index);
-      }else{        
-        const val = generateBookmark(item,index);        
-        return val;
+      }else{                
+        return generateBookmark(item);
       }
     });    
   }
@@ -124,8 +124,7 @@ const bookmarks = (function(){
   }
 
   function handleAddBookmarkBtn(){
-    $('#js-add-btn').on('click', event=>{
-      console.log('function ran');
+    $('#js-add-btn').on('click', event=>{      
       store.toggleAddBookmark();      
       render();
     });
@@ -176,12 +175,23 @@ const bookmarks = (function(){
     });
   }
 
-  function handleBookmarkEdit(){
+  function handleBookmarkEditBtn(){
     $('.js-bookmarkList').on('click','.js-edit-buttons',event =>{
       event.preventDefault();
       const index = $(event.currentTarget).data('item-index');                 
       store.toggleEdit(index);      
       render();      
+    });
+  }
+
+  function handleBookmarkUpdate(){
+    $('.js-bookmarkList').on('submit','.create-bookmark-form',event =>{
+      console.log('handleBookmark Update Method');      
+      event.preventDefault();
+      const desc = $(event.currentTarget).find('#js-description').val();            
+      const rating = $(event.currentTarget).find('input[name="rating"]:checked').val();
+      const id = $(event.currentTarget).find('#js-description').data('item-id');       
+      api.patchItem(id,{desc,rating},store.updateItem(id,{desc,rating}));
     });
   }
 
@@ -199,8 +209,9 @@ const bookmarks = (function(){
     handleCloseError();
     handleClickOverEvent();
     handleBookmarkDelete();
-    handleBookmarkEdit();
+    handleBookmarkEditBtn();
     handleMinimumRatingFilterEvent();
+    handleBookmarkUpdate();
   }
   return {
     bindEventListners,

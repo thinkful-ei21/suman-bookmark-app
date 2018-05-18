@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="utf-8">
   <title>Book Marks</title>  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -8,13 +9,13 @@
   <link rel="stylesheet" href="../index.css">  
 </head>
 <body>
-  <header>
+  <header role="banner">
       <h1>My Bookmarks</h1>
   </header>  
   <div class="container js-container">
     <div class="error-container"></div>  
     <section class="js-bookmarks-features">     
-      <button id="js-add-btn">
+      <button id="js-add-btn" role="Add Bookmark Button">
           <span>Add Bookmarks</span>
       </button>
       <form class="form-element js-minimum-rating-filter">          
