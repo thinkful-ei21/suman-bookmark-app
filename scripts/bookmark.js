@@ -34,7 +34,7 @@ const bookmarks = (function(){
 
   function generateBookmark(item){
     const rating = item.rating;        
-    return item.edit? `<form class="create-bookmark-form" aria-live="assertive">  
+    return item.edit? `<form class="create-bookmark-form" aria-live="assertive" role="edit bookmarks">  
     <fieldset>
       <legend>Edit a bookmark:</legend><br>
       <legend>${item.title}</legend>
@@ -43,8 +43,8 @@ const bookmarks = (function(){
       <legend> Current Rating :</legend> ${generateStars(rating)} <br> 
       <label for="rating">Select A Rating (Default would be 1):</label>      
       ${ratingHTML()}          
-      <input type="submit" value="SAVE" class="js-update-save-btn"/>
-      <input type="button" value="CANCEL" class="js-update-cancel-btn"/>
+      <input type="submit" value="SAVE" class="js-update-save-btn" role="Button save"/>
+      <input type="button" value="CANCEL" class="js-update-cancel-btn" role="Button cancel"/>
     </fieldset>                     
     </form>`:`<form class="create-bookmark-form">
       <div class="article" data-item-id="${item.id}">
