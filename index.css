@@ -6,6 +6,7 @@ header{
   margin-left: 20px;
 }
 
+
 .article{
  width : 500px;
  height: 125px; 
@@ -13,6 +14,7 @@ header{
  border-radius: 5px 5px 5px 5px;
  margin-top: 5px;
  margin-bottom: 5px;
+ cursor: pointer;
 }
 
 .form-element{

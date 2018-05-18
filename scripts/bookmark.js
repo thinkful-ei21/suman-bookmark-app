@@ -48,7 +48,7 @@ const bookmarks = (function(){
     </fieldset>                     
     </form>`:`<form class="create-bookmark-form">
       <div class="article" data-item-id="${item.id}">
-        <div class="article-title">${item.title}
+        <div class="article-title">${item.title}        
         </div>        
         ${generateStars(rating)}                
       </div>
@@ -101,7 +101,7 @@ const bookmarks = (function(){
     </form>`:''; 
   }
 
-  function generateBookmarkStringForAllBookmarks(){    
+  function generateBookmarkStringForAllBookmarks(){       
     return store.items.map((item,index) => {      
       if(item.expand){
         return generateExpandedBookmark(item,index);
@@ -191,6 +191,7 @@ const bookmarks = (function(){
       const rating = $(event.currentTarget).find('input[name="rating"]:checked').val();
       const id = $(event.currentTarget).find('#js-description').data('item-id');       
       api.patchItem(id,{desc,rating},store.updateItem(id,{desc,rating}));
+      render();
     });
   }
 

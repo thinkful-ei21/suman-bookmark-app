@@ -38,11 +38,15 @@ const store = (function(){
   };
 
   const updateItem = function(id,newItem){
-    this.items = this.items.forEach(item => {
-      if(item.id === id){
+    this.items = this.items.map(item => {      
+      if(item.id !== id){
+        return item;
+      }else{
         item.desc = newItem.desc;
-        item.rating = newItem.rating;
-      }
+        item.rating = newItem.rating;   
+        item.edit = false;        
+        return item;
+      }   
     });
   };
 
@@ -50,7 +54,7 @@ const store = (function(){
     let completeItemArr = this.items;
     if(value != 0){
       let temp = this.items.filter(item => {
-        if(item.rating == value){
+        if(item.rating >= value){
           return item;
         }
       });          
