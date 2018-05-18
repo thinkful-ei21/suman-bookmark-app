@@ -1,0 +1,101 @@
+* {
+  box-sizing: border-box;
+}
+
+header{
+  margin-left: 60px;
+}
+
+.container{
+  margin-left: 20px;
+}
+
+.article{
+ width : 500px;
+ height: 125px; 
+ border: 1px solid black;
+ border-radius: 5px 5px 5px 5px;
+ margin-top: 5px;
+ margin-bottom: 5px;
+}
+
+.form-element{
+  margin: 15px 15px 15px 15px;
+}
+
+.article-title{
+  width : 498px;
+  height: 25px; 
+  background-color: lightgray;
+  border-radius: 5px 5px 0 0;
+  padding: 5px 0 0 10px;
+}
+
+.edit-delete-buttons{
+  margin: 20px 0 0 0;
+}
+
+.form-element{
+  margin-left: 40px;
+}
+
+#js-add-btn{
+  margin-left: 40px;
+}
+
+#delete-button{
+  margin-left: 25px;
+}
+
+#edit-button{
+  margin-left: 225px;
+}
+
+.star{
+  color: orange;
+  padding-left:2px;
+}
+
+.form-adding-bookmark{
+  width: 1000px;    
+}
+
+.row {
+  display: flex;
+}
+.column {
+  padding: 10px;  
+}
+
+textarea{
+  margin-top: 5px;
+}
+
+.cancel-btn{
+  margin-left: 140px;
+  margin-bottom: 5px;
+}
+
+.save-btn{
+  margin-left: 5px;
+}
+
+.error-content {
+  position: fixed;
+  top: 15px;
+  right: 20px;
+  border: 2px solid red;  
+}
+
+.error-content p {
+  margin-top: 1px;
+  padding: 7px;
+}
+
+.error-content button {
+  font-size: 6pt;
+  background-color: red;
+  color: white;
+  position: relative;
+  left: 80%;
+}
