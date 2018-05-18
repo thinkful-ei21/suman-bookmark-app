@@ -46,7 +46,7 @@ const bookmarks = (function(){
       <input type="submit" value="SAVE" class="js-update-save-btn"/>
       <input type="button" value="CANCEL" class="js-update-cancel-btn"/>
     </fieldset>                     
-  </form>`:`<form class="create-bookmark-form">
+    </form>`:`<form class="create-bookmark-form">
       <div class="article" data-item-id="${item.id}">
         <div class="article-title">${item.title}
         </div>        
@@ -185,8 +185,7 @@ const bookmarks = (function(){
   }
 
   function handleBookmarkUpdate(){
-    $('.js-bookmarkList').on('submit','.create-bookmark-form',event =>{
-      console.log('handleBookmark Update Method');      
+    $('.js-bookmarkList').on('submit','.create-bookmark-form',event =>{      
       event.preventDefault();
       const desc = $(event.currentTarget).find('#js-description').val();            
       const rating = $(event.currentTarget).find('input[name="rating"]:checked').val();
@@ -203,6 +202,20 @@ const bookmarks = (function(){
     });
   }
   
+  function handleCancelButtonClick(){
+    $('.js-bookmarkList').on('click','.js-update-cancel-btn',event =>{ 
+      const id = $(event.currentTarget).closest('.create-bookmark-form').find('#js-description').data('item-id');
+      let index;
+      store.items.forEach(item => {
+        if(item.id === id){        
+          index = store.items.indexOf(item);
+        }
+      });      
+      store.toggleEdit(index);
+      render();      
+    });
+  }
+
   function bindEventListners(){       
     handleAddBookmarkBtn();
     handleSubmitForm();
@@ -212,6 +225,7 @@ const bookmarks = (function(){
     handleBookmarkEditBtn();
     handleMinimumRatingFilterEvent();
     handleBookmarkUpdate();
+    handleCancelButtonClick();
   }
   return {
     bindEventListners,
