@@ -34,7 +34,7 @@ const bookmarks = (function(){
 
   function generateBookmark(item){
     const rating = item.rating;        
-    return item.edit? `<form class="create-bookmark-form">  
+    return item.edit? `<form class="create-bookmark-form" aria-live="assertive">  
     <fieldset>
       <legend>Edit a bookmark:</legend><br>
       <legend>${item.title}</legend>
